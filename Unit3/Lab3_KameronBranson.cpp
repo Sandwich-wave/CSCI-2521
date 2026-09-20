@@ -22,7 +22,7 @@ int main()
 	std::cout<<"Menu\n" <<
 		"1. Calculate the Area of a Rectangle\n" <<
 		"2. Calculate the Area of a Circle\n" <<
-		"3. Quit (Hit any other key to quit)\n" <<
+		"3. Quit (Hit any other key + enter to quit)\n" <<
 		"Please make a menu selection: ";
 
 	std::cin>>menu;
