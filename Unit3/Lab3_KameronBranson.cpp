@@ -12,12 +12,12 @@ using namespace std;
 int main()
 {
 	const float PI = 3.14159;
-	float radius;
-	float area;
-	float length;
-	float width;
-	int menu;
-	string areaOfWhat;
+	float radius =0;
+	float area = 0;
+	float length = 0;
+	float width = 0;
+	int menu = 0;
+	string areaOfWhat = "";
 
 	std::cout<<"Menu\n" <<
 		"1. Calculate the Area of a Rectangle\n" <<
