@@ -3,6 +3,8 @@
  * @author Kameron Branson
  * @date 2026-10-18
  * @brief Program validates UPC-A barcodes performing the UPC-A check digit algorithm.
+ * @ref https://www.geeksforgeeks.org/cpp/stdstol-and-stdstoll-functions-in-c/
+ *
  */
 #include<iostream>
 #include<string>
@@ -12,9 +14,9 @@ using namespace std;
 /**
  * @brief Takes upc vector and checks if the upc is valid
  * @param upc vector reference to upc
- * @return true if UPC code is valid. false if UCP code is not valid
+ * @return None. (void)
  */
-bool isValidUpc(std::vector<int>& upc) {
+void isValidUpc(std::vector<int>& upc) {
     int odd = 0;
     int even = 0;
     int caculatedCheckDigit;
@@ -30,9 +32,9 @@ bool isValidUpc(std::vector<int>& upc) {
     caculatedCheckDigit = (((((odd * 3) + (even))%10) - 10 )) * -1;
 
     if ( caculatedCheckDigit== upc[11]) {
-        return true;
+        std::cout << "You have provided a valid UPC-A code!" << std::endl << std::endl;
     } else {
-        return false;
+        std::cout << "The code provided is not a valid UPC-A code!" << std::endl << std::endl;
     }
 }
 
@@ -92,23 +94,13 @@ int main()
             if (isValid) {
                 std::vector<int> upc;
                 vectorConversion(upc, userInput);
-
-                if (isValidUpc(upc)) {
-                    std::cout << "You have provided a valid UPC-A code!" << std::endl << std::endl;
-                } else {
-                    std::cout << "The code provided is not a valid UPC-A code!" << std::endl << std::endl;
-                }
+                isValidUpc(upc);
             }
-
-            // 829676019311
 
         } else {
             break;
         }
     }
-
-
-
 
 	return 0;
 }
