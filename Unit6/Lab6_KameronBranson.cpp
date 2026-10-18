@@ -6,6 +6,8 @@
  */
 #include<iostream>
 #include <algorithm>
+#include <vector>
+
 using namespace std;
 
 /**
@@ -122,7 +124,12 @@ void arraySolution()
  */
 float calculateAverage(const std::vector<int>& vec)
 {
+    int cumulative = 0;
+    for (int i = 0; i < vec.size(); i++) {
+        cumulative = cumulative + vec[i];
+    }
 
+    return (cumulative/(vec.size()));
 }
 
 /**
@@ -132,7 +139,11 @@ float calculateAverage(const std::vector<int>& vec)
  */
 int findMax(const std::vector<int>& vec)
 {
-
+    int max = vec[0];
+    for (int i : vec) {
+        if (i > max) {max = i;}
+    }
+    return max;
 }
 
 /**
@@ -142,7 +153,11 @@ int findMax(const std::vector<int>& vec)
  */
 int findMin(const std::vector<int>& vec)
 {
-
+    int min = vec[0];
+    for (int i : vec) {
+        if (i < min) {min = i;}
+    }
+    return min;
 }
 
 
@@ -153,6 +168,39 @@ int findMin(const std::vector<int>& vec)
  */
 void vectorSolution()
 {
+    bool keepGoing = true;
+    bool validInput = true;
+    int i = 0;
+    int userInput = 0;
+    float average = 0;
+
+    std::vector<int> scores;
+    std::cout << "Please enter scores. (input -1 to stop). " <<
+        "Ensure the values are between 0 and 100 using whole numbers." << std::endl;
+
+    while (userInput != -1) {
+        std::cout << "Enter score: ";
+        std::cin >> userInput;
+
+        if (userInput != -1) {
+            validInput = inputValidator(userInput);
+            if (validInput == false) {
+                std::cout << "Please enter a valid input between 0 and 100 or -1 to stop.";
+                i--;
+            } else {
+                scores.push_back(userInput);
+            }
+
+        }
+
+        i++;
+
+    }
+    average = calculateAverage(scores);
+
+    std::cout << "The highest score is: " << findMax(scores) << std::endl;
+    std::cout << "The lowest score is: " << findMin(scores) << std::endl;
+    std::cout << "The average score is: " << average << std::endl;
 
 }
 
@@ -163,7 +211,9 @@ void vectorSolution()
  */
 int main()
 {
-	arraySolution();
+	vectorSolution();
+    // arraySolution();
+
 
 	return 0;
 }
