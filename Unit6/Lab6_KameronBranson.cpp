@@ -9,9 +9,9 @@ using namespace std;
 
 /**
  * @brief arraySolution helper to determine average
- * @param arr
- * @param size
- * @return
+ * @param arr The array holding integer scores
+ * @param size The size of the array
+ * @return The average score as a float
  */
 float calculateAverage(const int arr[],int size)
 {
@@ -20,9 +20,9 @@ float calculateAverage(const int arr[],int size)
 
 /**
  * @brief arraySolution helper to determine maximum int
- * @param arr
- * @param size
- * @return
+ * @param arr The array holding integer scores
+ * @param size The size of the array
+ * @return The highest score as an int
  */
 int findMax(const int arr[], int size)
 {
@@ -31,9 +31,9 @@ int findMax(const int arr[], int size)
 
 /**
  * @brief arraySolution helper to determine minimum int
- * @param arr
- * @param size
- * @return
+ * @param arr The array holding integer scores
+ * @param size The size of the array
+ * @return The lowest score as an int
  */
 int findMin(const int arr[], int size)
 {
@@ -52,25 +52,34 @@ void arraySolution()
 }
 
 /**
- *
- * @param vec
- * @return
+ * @brief Calculates the average of the scores
+ * @param vec The vector containing integer scores
+ * @return The average score as a float
  */
-float calculateAverage(const std::vector<int>& vec) {}
+float calculateAverage(const std::vector<int>& vec)
+{
+
+}
 
 /**
  *
- * @param vec
- * @return
+ * @param vec The vector containing integer scores
+ * @return The highest score as an int
  */
-int findMax(const std::vector<int>& vec){}
+int findMax(const std::vector<int>& vec)
+{
+
+}
 
 /**
  *
- * @param vec
- * @return
+ * @param vec The vector containing integer scores
+ * @return The lowest score as an int
  */
-int findMin(const std::vector<int>& vec) {}
+int findMin(const std::vector<int>& vec)
+{
+
+}
 
 
 /**
