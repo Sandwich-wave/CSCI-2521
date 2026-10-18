@@ -211,8 +211,18 @@ void vectorSolution()
  */
 int main()
 {
-	vectorSolution();
-    // arraySolution();
+	int menu = 0;
+
+    while (menu != -1) {
+        std::cout << "Enter 1 for vector calculation, 2 for array, or -1 to quit: ";
+        std::cin >> menu;
+        if (menu == 1) {vectorSolution();}
+        else if (menu == 2) {arraySolution();}
+        else if (menu == -1) {break;}
+        else {
+            std::cout << "Please select a valid menu option!" << std::endl;
+        }
+    }
 
 
 	return 0;
