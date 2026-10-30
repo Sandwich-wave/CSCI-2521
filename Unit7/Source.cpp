@@ -35,12 +35,17 @@ int main()
     {
         switch (menuChoice)
         {
-        case DEPOSIT:
-            /* 
-            TODO: Gather the deposit amount input and validate it is > 0.
-            Add the code that interacts with the account object to add
-            a deposit to the account.
-            */
+            case DEPOSIT:
+
+            double amount = 0;
+            std::cout << "Enter deposit amount: ";
+            std::cin >> amount;
+
+            if (isAmountValid(amount) == true) {
+                account.deposit(amount);
+            } else {
+                printInvalidMenuChoiceMessage();
+            }
             break;
         case WITHDRAWAL:
             /*
