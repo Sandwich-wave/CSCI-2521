@@ -57,10 +57,7 @@ int main()
             break;
 
         case CLOSE_OF_BUSINESS:
-            /*
-            TODO: Add the code that interacts with the account object to perform
-            the close of business account balancing.
-            */
+            account.closeOfBusiness();
             break;
         }
 
