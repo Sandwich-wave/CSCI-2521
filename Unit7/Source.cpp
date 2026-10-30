@@ -33,27 +33,29 @@ int main()
     int menuChoice = getMenuOption();
     while (menuChoice != QUIT)
     {
+        int amount = 0;
         switch (menuChoice)
         {
-            case DEPOSIT:
-
-            double amount = 0;
+        case DEPOSIT:
             std::cout << "Enter deposit amount: ";
             std::cin >> amount;
-
             if (isAmountValid(amount) == true) {
                 account.deposit(amount);
             } else {
                 printInvalidMenuChoiceMessage();
             }
             break;
-        case WITHDRAWAL:
-            /*
-            TODO: Gather the withdrawal amount input and validate it is > 0.
-            Add the code that interacts with the account object to add
-            a widthdrawal to the account.
-            */
+
+            case WITHDRAWAL:
+            std::cout << "Enter withdrawal amount: ";
+            std::cin >> amount;
+            if (isAmountValid(amount) == true) {
+                account.withdraw(amount);
+            } else {
+                printInvalidMenuChoiceMessage();
+            }
             break;
+
         case CLOSE_OF_BUSINESS:
             /*
             TODO: Add the code that interacts with the account object to perform
