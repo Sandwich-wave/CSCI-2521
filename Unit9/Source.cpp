@@ -7,14 +7,27 @@
 #include<iostream>
 #include "Account.h"
 
+/**
+ * @class SavingsAccount
+ * @brief inherits Account to add interest related transaction
+ */
 class SavingsAccount: public Account
 {
 public:
+    /**
+     * @brief Creates account and sets interest rate
+     * @param accNum The account number
+     * @param initBal The initial balance
+     * @param cust The customer object associated to this account
+     */
     SavingsAccount(const string& accNum, double initBal, const Customer& cust)
     : Account(accNum, initBal, cust), dailyInterestRate(0.05)
     {
     }
 
+    /**
+     * @brief Iterates deposits and withdrawals and updates balance
+     */
     void closeOfBusiness() override
     {
         double totalDeposits = accumulate(deposits.begin(), deposits.end(), 0.0);
@@ -32,7 +45,9 @@ public:
         withdrawals.clear();
 
     }
-
+    /**
+     * @brief Prints a quick information summary about the account
+     */
     void printAccountInfo() const override
     {
         cout << "Account Number: " << accountNumber << endl;
