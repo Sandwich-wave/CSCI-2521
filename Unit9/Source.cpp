@@ -52,7 +52,7 @@ public:
     {
         cout << "Account Number: " << accountNumber << endl;
         cout << "Current Balance: $" << balance << endl;
-        cout << "Interest Ragte: " << dailyInterestRate << "%" << endl;
+        cout << "Interest Rate: " << (100 * dailyInterestRate) << "%" << endl;
         owner.printCustomerInfo();
     }
 
@@ -80,20 +80,20 @@ int main()
     // just use dummy data for now for the customer and the account
     // we care about interacting with account object for this lab
     Customer customer("0123456789", "customer@cscc.edu");
-    Account account("5423678409", 100.00, customer);
-    account.printAccountInfo();
+    Account* savingsAccount = new SavingsAccount("5423678409", 100.00, customer);
+    savingsAccount->printAccountInfo();
 
     int menuChoice = getMenuOption();
     while (menuChoice != QUIT)
     {
-        int amount = 0;
+        double amount = 0.0;
         switch (menuChoice)
         {
         case DEPOSIT:
             std::cout << "Enter deposit amount: ";
             std::cin >> amount;
             if (isAmountValid(amount) == true) {
-                account.deposit(amount);
+                savingsAccount->deposit(amount);
             } else {
                 printInvalidMenuChoiceMessage();
             }
@@ -103,19 +103,21 @@ int main()
             std::cout << "Enter withdrawal amount: ";
             std::cin >> amount;
             if (isAmountValid(amount) == true) {
-                account.withdraw(amount);
+                savingsAccount->withdraw(amount);
             } else {
                 printInvalidMenuChoiceMessage();
             }
             break;
 
         case CLOSE_OF_BUSINESS:
-            account.closeOfBusiness();
+            savingsAccount->closeOfBusiness();
             break;
         }
 
         menuChoice = getMenuOption();
     }
+    delete savingsAccount;
+    savingsAccount = nullptr;
 }
 
 void printMenu()
