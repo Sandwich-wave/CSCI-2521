@@ -7,7 +7,43 @@
 #include<iostream>
 #include "Account.h"
 
+class SavingsAccount: public Account
+{
+public:
+    SavingsAccount(const string& accNum, double initBal, const Customer& cust)
+    : Account(accNum, initBal, cust), dailyInterestRate(0.05)
+    {
+    }
 
+    void closeOfBusiness() override
+    {
+        double totalDeposits = accumulate(deposits.begin(), deposits.end(), 0.0);
+        double totalWithdrawals = accumulate(withdrawals.begin(), withdrawals.end(), 0.0);
+
+        double previousBalance = balance;
+        double newBalance = previousBalance + totalDeposits - totalWithdrawals;
+
+        newBalance = newBalance + (newBalance * dailyInterestRate);
+        printSummary(previousBalance, totalDeposits, totalWithdrawals, newBalance);
+
+        balance = newBalance;
+
+        deposits.clear();
+        withdrawals.clear();
+
+    }
+
+    void printAccountInfo() const override
+    {
+        cout << "Account Number: " << accountNumber << endl;
+        cout << "Current Balance: $" << balance << endl;
+        cout << "Interest Ragte: " << dailyInterestRate << "%" << endl;
+        owner.printCustomerInfo();
+    }
+
+private:
+    double dailyInterestRate;
+};
 
 void printMenu();
 int getMenuOption();
