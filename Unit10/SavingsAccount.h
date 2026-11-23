@@ -13,7 +13,7 @@ public:
     SavingsAccount(const string& accNum, double initialBalance, float interest, const Customer& customer);
     void closeOfBusiness() override;
     void printAccountInfo() const override;
-    void Save();
+    void Save() const;
 };
 
 #endif

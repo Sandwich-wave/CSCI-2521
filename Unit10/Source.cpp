@@ -27,7 +27,7 @@ int main()
     // just use dummy data for now for the customer and the account
     // we care about interacting with account object for this lab
     Customer customer("0123456789", "customer@cscc.edu");
-    Account *account = new SavingsAccount("5423678409", 100.00, .05, customer);
+    SavingsAccount *account = new SavingsAccount("5423678409", 100.00, .05, customer);
     account->printAccountInfo();
 
     int menuChoice = getMenuOption();
