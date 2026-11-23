@@ -18,7 +18,7 @@ class Translator
 {
 protected:
     virtual ~Translator() = default;
-    virtual void translate() {}
+    virtual void translate(string input) {}
 };
 
 class MorseCodeEncoder : public Translator
@@ -30,8 +30,15 @@ public:
     };
 
 protected:
-    void translate() override
+    void translate(string &input) override
     {
+        string result = "";
+        englishToUpperCase(input);
+
+        for (int i = 0; i < input.length(); i++)
+        {
+
+        }
 
     };
 
@@ -47,18 +54,32 @@ private:
     };
 
 
+    void englishToUpperCase(string &input)
+    {
+        for (char &s: input)
+        {
+            s = toupper(s);
+        }
+    };
+
+
+
+
 };
 
 class TranslationApp
 {
 public:
-    TranslationApp() :
+    TranslationApp()
+    {
+
+    }
 };
 
 int main()
 {
     MorseCodeEncoder encoder;
-    encoder
+    encoder;
 
     return 0;
 }
