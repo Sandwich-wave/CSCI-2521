@@ -19,7 +19,6 @@ class Translator
 protected:
     virtual ~Translator() = default;
     virtual void translate() {}
-    virtual const std::vector<std::vector<std::string>> getDictionary() {};
 };
 
 class MorseCodeEncoder : public Translator
@@ -29,13 +28,15 @@ public:
     {
 
     };
-    void translate()
+
+protected:
+    void translate() override
     {
 
     };
 
 private:
-    std::vector<std::vector<std::string>> dictionary = {
+    std::vector<std::vector<std::string>> englishDictionary = {
         {"A", ".-"},   {"B", "-..."}, {"C", "-.-."}, {"D", "-.."},
         {"E", "."},    {"F", "..-."}, {"G", "--."},  {"H", "...."},
         {"I", ".."},   {"J", ".---"}, {"K", "-.-"},  {"L", ".-.."},
@@ -44,10 +45,7 @@ private:
         {"U", "..-"},  {"V", "...-"}, {"W", ".--"},  {"X", "-..-"},
         {"Y", "-.--"}, {"Z", "--.."}
     };
-    const std::vector<std::vector<std::string>> getDictionary() override
-    {
-        return dictionary;
-    }
+
 
 };
 
@@ -60,7 +58,7 @@ public:
 int main()
 {
     MorseCodeEncoder encoder;
-    encoder.dictionary = {};
+    encoder
 
     return 0;
 }
