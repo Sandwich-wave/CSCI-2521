@@ -1,4 +1,11 @@
+/**
+* @file Lab10_KameronBranson.cpp
+ * @author Kameron Branson
+ * @date 2026-11-23
+ * @brief Bank account app that saves account information and outputs to a file.
+ */
 #include<iostream>
+#include<fstream>
 #include "SavingsAccount.h"
 
 void printMenu();
@@ -40,6 +47,7 @@ int main()
             break;
         case CLOSE_OF_BUSINESS:
             account->closeOfBusiness();
+            account->Save();
             break;
         }
 

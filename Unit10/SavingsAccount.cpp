@@ -1,5 +1,7 @@
 #include "SavingsAccount.h"
 
+#include "../../../../../../../Program Files/JetBrains/CLion 2026.2.2/bin/mingw/lib/gcc/x86_64-w64-mingw32/15.2.0/include/c++/iosfwd"
+
 SavingsAccount::SavingsAccount() : interest(1)
 {
 }
@@ -33,4 +35,16 @@ void SavingsAccount::printAccountInfo() const
     cout << "Current Balance: $" << balance << endl;
     cout << "Interest Rate: " << interest * 100 << "%" << endl;
     owner.printCustomerInfo();
+}
+
+void SavingsAccount::Save()
+{
+    std::ofstream outFS;
+    outFS.open("account_summary.txt");
+
+    outFS << "Account Number: " << accountNumber << endl;
+    outFS << "Current Balance: $" << balance << endl;
+    outFS << "Interest Rate: " << interest * 100 << "%" << endl;
+
+    outFS.close();
 }
