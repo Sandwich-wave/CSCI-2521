@@ -16,9 +16,11 @@ using namespace std;
 
 class Translator
 {
+public:
+    virtual void translate(string &input) {}
 protected:
     virtual ~Translator() = default;
-    virtual void translate(string input) {}
+
 };
 
 class MorseCodeEncoder : public Translator
@@ -29,21 +31,13 @@ public:
 
     };
 
-protected:
     void translate(string &input) override
     {
-        string result = "";
-        englishToUpperCase(input);
-
-        for (int i = 0; i < input.length(); i++)
-        {
-
-        }
-
+        cout << toMorseCode(input) << endl;
     };
 
 private:
-    std::vector<std::vector<std::string>> englishDictionary = {
+    std::vector<std::vector<string>> englishDictionary = {
         {"A", ".-"},   {"B", "-..."}, {"C", "-.-."}, {"D", "-.."},
         {"E", "."},    {"F", "..-."}, {"G", "--."},  {"H", "...."},
         {"I", ".."},   {"J", ".---"}, {"K", "-.-"},  {"L", ".-.."},
@@ -62,8 +56,35 @@ private:
         }
     };
 
+    string toMorseCode(string &input)
+    {
+        string result = "";
+        englishToUpperCase(input);
 
+        for (char c : input)
+        {
+            bool match = false;
 
+            for (std::vector<string> s: englishDictionary)
+            {
+                for (string r : s)
+                {
+                    for (string r2: s)
+                    {
+                        if (c == r2[0])
+                        {
+                            result = result + r2[1] + "\n";
+                        } else
+                        {
+                            result += "";
+                        }
+                    }
+                }
+            }
+
+        }
+        return result;
+    }
 
 };
 
@@ -72,14 +93,84 @@ class TranslationApp
 public:
     TranslationApp()
     {
+        menuSelection = nullptr;
+        sourceText = nullptr;
+        translator = nullptr;
+    }
+    ~TranslationApp()
+    {
+        delete menuSelection;
+        delete sourceText;
+        menuSelection = nullptr;
+        sourceText = nullptr;
+    }
+    void app()
+    {
+        while (!menuSelection)
+        {
+            setMenuSelection();
 
+            if (*menuSelection == 2)
+            {
+                break;
+
+            } else
+            {
+                setSourceText();
+                if (*menuSelection == 1)
+                {
+                    cout << "I tried!";
+                    translator = new MorseCodeEncoder();
+                    translator->translate(*sourceText);
+                    menuSelection = nullptr;
+                } else
+                {
+                    cout << &menuSelection;
+                }
+            }
+        }
+    }
+private:
+    int* menuSelection;
+    string* sourceText;
+    Translator* translator;
+    void setMenuSelection()
+    {
+        int response;
+
+        while (menuSelection == nullptr)
+        {
+            cout << "-\t-\tTranslation App\t-\t" << endl;
+            cout << "1 - English To Morse Code" << endl;
+            cout << "2 - Quit" << endl;
+            cin >> response;
+
+            if (response == 1 || response == 2) {menuSelection = &response;}
+            else {invalidOption();}
+            cin.clear();
+        }
+
+    };
+    void invalidOption()
+    {
+        cout << "Invalid Option: Please input valid option!" << endl;
+    }
+    void setSourceText()
+    {
+        while (sourceText == nullptr)
+        {
+            string input;
+            cout << "Please enter text to translate (50 character limit): " << endl;
+            cin >> input;
+            if (input.length() <= 50) {sourceText = &input;}
+        }
     }
 };
 
 int main()
 {
-    MorseCodeEncoder encoder;
-    encoder;
+    TranslationApp* tester = new TranslationApp();
+    tester->app();
 
     return 0;
 }
