@@ -29,7 +29,7 @@ public:
 
     void translate(string* input) override
     {
-        cout << toMorseCode(*input) << endl;
+        cout << toMorseCode(*input) << "\n" << endl;
     };
 
 private:
@@ -59,19 +59,14 @@ private:
 
         for (char c : input)
         {
-            for (std::vector<string> & s: englishDictionary)
+            for (std::vector<string> &s: englishDictionary)
             {
-                for (string r2: s)
+                if (c == s[0][0])
                 {
-                    if (c == r2[0])
-                    {
-                        result = result + r2[1] + "\n";
-                    } else
-                    {
-                        result += "";
-                    }
+                    result += s[1];
                 }
-        }
+            }
+            result += "\n";
 
         }
         return result;
@@ -111,7 +106,6 @@ public:
             if (*menuSelection == 1)
             {
                 setSourceText();
-                cout << *sourceText;
 
                 delete translator;
                 translator = new MorseCodeEncoder();
@@ -135,7 +129,7 @@ private:
             cout << "2 - Quit" << endl;
             cin >> response;
 
-            if (response == 1 || response == 2) {menuSelection = &response; break;}
+            if (response == 1 || response == 2) {*menuSelection = response; break;}
             else {invalidOption();}
             cin.clear();
         }
@@ -152,9 +146,8 @@ private:
             string input;
             cout << "Please enter text to translate (50 character limit): " << endl;
             cin >> input;
-            if (input.length() <= 50) {sourceText = &input; break;}
+            if (input.length() <= 50) {*sourceText = input; break;}
         }
-        cout << *sourceText;
     }
 };
 
