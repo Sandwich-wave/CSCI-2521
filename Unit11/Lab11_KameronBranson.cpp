@@ -33,10 +33,10 @@ int main()
 
         if (userInput < 0) {
             fl = "first";
-            city = cities.at(0);
+            city = cities.front();
         } else {
             fl = "last";
-            city = cities.at(6);
+            city = cities.back();
         }
 
         cout << "Invalid index. Here's the " << fl << " city instead: " << city << endl;
